@@ -3,7 +3,7 @@
 using namespace std;
 
 template <typename T>
-int busquedaBinaria(T val, const vector& v, int ini, int fin) {
+int busquedaBinaria(T val, const vector<T>& v, int ini, int fin) {
 	if (ini > fin)
 		return -1;
 	
@@ -19,7 +19,7 @@ int busquedaBinaria(T val, const vector& v, int ini, int fin) {
 }
 
 template <typename T>
-void quickSort(vector& v, int ini, int fin) {
+void quickSort(vector<T>& v, int ini, int fin) {
 	if (ini < fin) {
 		int pivot = partition(v, ini, fin);
 		quickSort(v, ini, pivot-1);
@@ -27,7 +27,8 @@ void quickSort(vector& v, int ini, int fin) {
 	}
 }
 
-int partition(vector& v, int ini, int fin) {
+template <typename T>
+int partition(vector<T>& v, int ini, int fin) {
 	int x = v[fin];
 	int i = ini;
 
