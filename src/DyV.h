@@ -13,30 +13,32 @@ int busquedaBinaria(T val, const vector<T>& v, int ini, int fin) {
 		return m;
 	
 	if (v[m] > val)
-		return busquedaBinaria(val, v, ini, m);
+		return busquedaBinaria(val, v, ini, m-1);
 	else
 		return busquedaBinaria(val, v, m+1, fin);
 }
 
 template <typename T>
-void quickSort(vector<T>& v, int ini, int fin) {
-	if (ini < fin) {
-		int pivot = partition(v, ini, fin);
-		quickSort(v, ini, pivot-1);
-		quickSort(v, pivot+1, fin);
-	}
+int partition(vector<T>& v, int ini, int fin) {
+        T x = v[fin];
+        int i = ini;
+
+        for(int j = ini; j < fin-1; j++){
+                if (v[j] <= x)
+                        swap(v[i], v[j]);
+			i++;
+        }
+
+        swap(v[i], v[fin]);
+        return i;
 }
 
 template <typename T>
-int partition(vector<T>& v, int ini, int fin) {
-	int x = v[fin];
-	int i = ini;
-
-	for(int j = ini; i < fin-1; i++){
-		if (v[i] <= x)
-			swap(v[i], v[j]);
+void quicksort(vector<T>& v, int ini, int fin) {
+	if (ini < fin) {
+		int pivot = partition(v, ini, fin);
+		quicksort(v, ini, pivot-1);
+		quicksort(v, pivot+1, fin);
 	}
-
-	swap(v[i], v[fin]);
-	return i;
 }
+
